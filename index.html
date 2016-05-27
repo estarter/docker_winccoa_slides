@@ -46,10 +46,13 @@
 
                         </script>
                     </section>
-                    <section data-markdown>
-                    add docker workflow - build, release, use
+
+                    <section>
+<h2>Big picture</h2>
+<img src="flow.png">
                     </section>
                 </section>
+
                 <section data-markdown>
                     <script type="text/template">
 ##WinCC OA Dockerfile
@@ -91,12 +94,13 @@ Source: https://gitlab.cern.ch/en-dep-ice-scada/docker
                     <script type="text/template">
 ## CERN Docker repo
 
-- http://docker.cern.ch/
-- Is in "pilot" status
-- You can request your repo by mail
-   - http://docker.cern.ch/registrytags?amerezhi
+http://docker.cern.ch/
 
-You need it once you want to use your image in different machines or by continuous integration.
+- Has a <span style="color: #ff2c2d;">pilot</span> status
+- You can request your own repo by mail
+   - Mine http://docker.cern.ch/registrytags?amerezhi
+
+You need it when you want to use your image in different machines or by continuous integration.
                     </script>
                 </section>
 
@@ -110,6 +114,8 @@ You need it once you want to use your image in different machines or by continuo
             // More info https://github.com/hakimel/reveal.js#configuration
             Reveal.initialize({
                 history: true,
+
+                transition: 'slide', // none/fade/slide/convex/concave/zoom
 
                 // More info https://github.com/hakimel/reveal.js#dependencies
                 dependencies: [
