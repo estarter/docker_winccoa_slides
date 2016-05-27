@@ -98,12 +98,51 @@ http://docker.cern.ch/
 
 - Has a <span style="color: #ff2c2d;">pilot</span> status
 - You can request your own repo by mail
-   - Mine http://docker.cern.ch/registrytags?amerezhi
+   - Mine is http://docker.cern.ch/registrytags?amerezhi
 
 You need it when you want to use your image in different machines or by continuous integration.
                     </script>
                 </section>
 
+                <section>
+                <section data-markdown><script type="text/template">
+## GitLab CI
+
+- Designed for Docker images.
+- Example of .gitlab-ci.yml:
+
+```
+unittest:
+    image: estarter/wpm
+    script:
+        - nosetests WinCCOAProjectManagement --verbose --with-coverage --cover-package=downloadComponents,handleWinCCOAProject,ProjectConfig
+
+cpc_app_integration:
+    image: docker.cern.ch/amerezhi/unicos
+    script:
+        - python Applications/ucpcApplication.py -d --proj /opt/PVSS_Projects/dev_proj --latestBuild
+```
+
+                </script></section>
+
+                <section data-markdown><script type="text/template">
+## GitLab CI build overview
+
+![GitLab CI build overview](gitlab_build_overview.png)
+                </script></section>
+
+                <section data-markdown><script type="text/template">
+## GitLab CI build details
+
+![GitLab CI build details](gitlab_build_details.png)
+                </script></section>
+
+                </section>
+
+                <section data-markdown>
+                    <script type="text/template">
+                    </script>
+                </section>
             </div>
         </div>
 
