@@ -1,0 +1,94 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/black.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+		<style>
+			section { text-align: left; }
+		</style>
+
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+				<h1>WinCC OA on Docker</h1>
+				</section>
+				<section>
+					<section data-markdown>
+						<script type="text/template">
+##Docker introduction
+
+- Dockerfile is a set of commands
+- Building Dockerfile produces an image
+- Image is tagged by version (label)
+  - Same Dockerfile can generate many images
+- Image instantiation creates a container
+   - a brand new vm
+- Image can be distributed via docker repos
+
+						</script>
+					</section>
+					<section data-markdown>
+					add docker workflow - build, release, use
+					</section>
+				</section>
+				<section data-markdown>
+					<script type="text/template">
+##WinCC OA Dockerfile
+
+Generic Dockerfile/images
+
+1. slc6-winccoa
+2. cc7-winccoa
+
+Description:
+
+- Based on standard "SLC" image
+- Contains WinCCOA downloaded from en-dep-ice-scd website
+- Contains WPM
+
+Issue: how to deal with the license?
+
+Source: https://gitlab.cern.ch/en-dep-ice-scada/docker
+					</script>
+				</section>
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				history: true,
+
+				// More info https://github.com/hakimel/reveal.js#dependencies
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>
