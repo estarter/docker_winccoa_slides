@@ -1,3 +1,13 @@
+# Export to pdf:
+
+```bash
+git clone --depth 1 https://github.com/astefanutti/decktape.git
+cd decktape
+curl -L http://astefanutti.github.io/decktape/downloads/phantomjs-osx-cocoa-x86-64 -o bin/phantomjs
+chmod +x bin/phantomjs
+./bin/phantomjs decktape.js http://estarter.github.io/docker_winccoa_slides/  output.pdf
+```
+
 # reveal.js [![Build Status](https://travis-ci.org/hakimel/reveal.js.svg?branch=master)](https://travis-ci.org/hakimel/reveal.js)
 
 A framework for easily creating beautiful presentations using HTML. [Check out the live demo](http://lab.hakim.se/reveal-js/).
