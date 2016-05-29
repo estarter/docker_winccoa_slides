@@ -36,11 +36,11 @@
                         <script type="text/template">
 ##Docker introduction
 
-- Dockerfile is a set of commands
-- Building Dockerfile produces an image
+- Dockerfile is a set of "linux" commands and special build instructions
+- Building a Dockerfile produces an **image**
 - Image is tagged by version (label)
   - Same Dockerfile can generate many images
-- Image instantiation creates a container
+- Image instantiation creates a **container**
    - a brand new vm
 - Image can be distributed via docker repos
 
@@ -53,24 +53,22 @@
                     </section>
                 </section>
 
+                <section>
                 <section data-markdown>
                     <script type="text/template">
 ##WinCC OA Dockerfile
 
-Generic Dockerfile/images
+Generic Dockerfile/images ([repo](https://gitlab.cern.ch/en-dep-ice-scada/docker))
 
-1. slc6-winccoa
-2. cc7-winccoa
+1. *slc6-winccoa*
+2. *cc7-winccoa*
 
 Description:
 
 - Based on standard "SLC" image
-- Contains WinCCOA downloaded from en-dep-ice-scd website
-- Contains WPM
+- With WinCCOA (from en-dep-ice-scd website)
+- With WPM (lastest available)
 
-Issue: how to deal with the license?
-
-Source: https://gitlab.cern.ch/en-dep-ice-scada/docker
                     </script>
                 </section>
 
@@ -78,16 +76,17 @@ Source: https://gitlab.cern.ch/en-dep-ice-scada/docker
                     <script type="text/template">
 ##FW Dockerfile
 
-Based on WinCC OA images, the images contain WinCC OA project created. There are:
+Based on WinCC OA images, I made few images with WinCC OA project created. There are:
 
-1. fw-naked
-2. unicos
-3. lhcservices / survey / ...
+1. *fw-naked* (based on *slc6-winccoa*)
+2. *unicos* (based on *fw-naked*)
+3. *lhcservices* / *survey* / *cpc* / ... (based on *unicos*)
 
-Issue: building an image with unicos cpc project from slc6-winccoa fails half of the time.
+Issue: building a *cpc* image based on *slc6-winccoa* fails half of the time. It works fine with *unicos* parent.
 
 Source: https://gitlab.cern.ch/en-dep-ice-scada/docker
                     </script>
+                </section>
                 </section>
 
                 <section data-markdown>
@@ -109,7 +108,7 @@ You need it when you want to use your image in different machines or by continuo
 ## GitLab CI
 
 - Designed for Docker images.
-- Example of .gitlab-ci.yml:
+- [Example](https://gitlab.cern.ch/en-dep-ice-scada/WinCCOAProjectManagement/blob/master/.gitlab-ci.yml) of .gitlab-ci.yml:
 
 ```
 unittest:
@@ -143,10 +142,56 @@ cpc_app_integration:
 
                 </section>
 
-                <section data-markdown>
-                    <script type="text/template">
-                    </script>
+                <section>
+                <section data-markdown><script type="text/template">
+## Jenkins
+
+1. Add a docker runner/image as a jenkins' node
+2. Configure a job to be executed in the docker's container
+
+
+                </script></section>
+
+                <section data-markdown><script type="text/template">
+## Jenkins node config
+
+[Howto](https://amerezhin.wordpress.com/2016/02/16/run-jenkins-job-in-a-docker-image/) add docker image' nodes:
+
+1. Configure a docker runner
+2. Prepare the image for jenkins
+3. Add docker image as a jenkins node ([configuration](https://icejenkins.cern.ch/configure))
+
+<img src="jenkins_node_config.png" />
+                </script></section>
+
+                <section data-markdown><script type="text/template">
+## Jenkins job config
+
+- Set a job to be executed in the image label's node ([example job](https://icejenkins.cern.ch/job/docker-test/configure))
+
+<img src="jenkins_job_config.png" />
+
+- Check container's info inside the build data
+
+<img src="jenkins_build_info.png" />
+
+                </script></section>
+                <section data-markdown><script type="text/template">
+## Jenkins - container status
+
+List of servers and contrainers in [Manage Jenkins/Docker](https://icejenkins.cern.ch/docker-plugin/) page
+
+<img src="jenkins_docker_status.png" />
+
+
+                </script></section>
+
                 </section>
+
+                <section>
+<img src="https://www.docker.com/sites/default/files/docker_toolbox.png"/>
+                </section>
+
             </div>
         </div>
 
