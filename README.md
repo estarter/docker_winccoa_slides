@@ -1,6 +1,13 @@
+# Run it locally:
+
+```sh
+npm install
+npm start
+```
+
 # Export to pdf:
 
-```bash
+```sh
 git clone --depth 1 https://github.com/astefanutti/decktape.git
 cd decktape
 curl -L http://astefanutti.github.io/decktape/downloads/phantomjs-osx-cocoa-x86-64 -o bin/phantomjs
